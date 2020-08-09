@@ -1,0 +1,13 @@
+server:
+  port: 7002
+eureka:
+  instance:
+    hostname: eureka7002.com #eureka主机名
+  client:
+    #false表示不把自己给注册到eureka server ,所以不需要设置spring.application.name
+    register-with-eureka: false
+    #自己一端就是eureka注册中心，职责就是维护这个eureka instance,不需要去检索服务
+    fetch-registry: false
+    service-url:
+    #eureka  server eureka7002.com指向 http://eureka7001.com:7001/eureka/
+      defaultZone: http://eureka7001.com:7001/eureka/

@@ -1,0 +1,29 @@
+server:
+  port: 8002
+spring:
+  application:
+    name: cloud-payment-provider-service  #支付服务应用程序名
+  datasource:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: org.gjt.mm.mysql.Driver
+        url: jdbc:mysql://127.0.0.1:3306/clouddb2020?useUnicode=true&characterEncoding=utf-8&useSSL=false
+        username: root
+        password: jiangfan
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.jiangfan.springcloud.entitys #所有entitys实体类取别名的包
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+eureka:
+  client:
+   #在微服务提供者一边，提供者需要注册到eureka server,所以作为eureka client需要注册到这eureka设置为ture
+    register-with-eureka: true
+    #是否需要从eureka server抓取已有注册信息，默认为true,单节点无所谓，集群必须设置为true才能配置ribbon使用负载均衡
+    fetchRegistry: true
+    service-url:
+      #defaultZone: http://localhost:7001/eureka/ 单机版
+      defaultZone: http://eureka7001.com:7001//eureka/,http://eureka7002.com:7002/eureka/ #集群版
+  instance:           #自定义注册到eureka server的服务名
+       instance-id:  paymentServiceProvider-8002
+        #访问路径可以设置为IP地址,也就是访问eureka的web界面时在status一栏，鼠标放到服务名上去会显示生产者的Ip地址+端口
+       prefer-ip-address: true
