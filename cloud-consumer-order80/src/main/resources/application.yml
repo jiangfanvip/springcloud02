@@ -2,7 +2,12 @@ server:
   port: 80
 spring:
     application:
-      name: cloud-comsumer-order
+      name: cloud-comsumer-order #让监控的数据收集到zipkin上地址如下http://localhost:9411
+    zipkin:
+      base-url: http://localhost:9411
+    sleuth:
+      sampler:
+        probability: 1 #采样率值介于0到1之间，1则表示全部采集
 eureka:
   client:
    #在微服务提供者一边，提供者需要注册到eureka server,所以作为eureka client需要注册到这eureka设置为ture

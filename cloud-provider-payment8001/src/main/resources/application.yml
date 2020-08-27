@@ -4,11 +4,17 @@ spring:
   application:
     name: cloud-payment-provider-service #支付服务应用程序名
   datasource:
-        type: com.alibaba.druid.pool.DruidDataSource
-        driver-class-name: org.gjt.mm.mysql.Driver
-        url: jdbc:mysql://127.0.0.1:3306/clouddb2020?useUnicode=true&characterEncoding=utf-8&useSSL=false
-        username: root
-        password: jiangfan
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: org.gjt.mm.mysql.Driver
+    url: jdbc:mysql://127.0.0.1:3306/clouddb2020?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: jiangfan
+  zipkin:
+    base-url: http://localhost:9411 #让监控的数据收集到zipkin上地址如下http://localhost:9411
+  sleuth:
+    sampler:
+      #采样率值介于0到1之间，1则表示全部采集
+      probability: 1
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.jiangfan.springcloud.entitys #所有entitys实体类取别名的包

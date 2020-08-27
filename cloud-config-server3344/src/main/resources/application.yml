@@ -1,0 +1,36 @@
+server:
+  port: 3344
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/
+  instance:
+    ip-address: 127.0.0.1
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 1
+    lease-expiration-duration-in-seconds: 2
+spring:
+  application:
+    name: cloud-config-center
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/jiangfanvip/spingcloud-config.git
+          search-paths:
+            - springcloud-config
+          username: 641187625@qq.com
+          password: jiangfan1990
+      label: master
+  rabbitmq:
+    host: 106.52.248.12
+    port: 5672
+    username: jiangfan
+    password: 123456
+
+#rabbitmq相关配置，暴露bus刷新配置的端点
+management:
+  endpoints:  #暴露bus刷新配置的端点
+    web:
+      exposure:
+        include: 'bus-refresh'

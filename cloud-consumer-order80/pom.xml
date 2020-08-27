@@ -13,6 +13,11 @@
     <artifactId>cloud-consumer-order80</artifactId>
 
     <dependencies>
+        <!--        包含了Sleuth-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-zipkin</artifactId>
+        </dependency>
         <!--spring2.X   eureka client-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
